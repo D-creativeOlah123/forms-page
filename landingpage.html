@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>landingpage</title>
+    <style>
+       * {
+	box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+ul{
+    display: flex;
+    gap: 20px;
+} 
+ul li{
+    list-style: none;
+}
+    </style>
+</head>
+<body>
+    <section>
+        <nav>
+            <div class="logo">
+                <img src="Frame 38 (1).png" alt="">
+            </div>
+            <ul>
+                <li>Home</li>
+                <li><a href="profile.html">profile</a></li>
+                <li><a href="blog.html">blog</a></li>
+                <li>About us</li>
+            </ul>
+            <div class="log">
+        <button onclick="showModal()" id="logout">LogOut</button>
+    </div>
+    <div id="modall">
+        <h3>Are you sure you want to logout</h3>
+        <button onclick="logout()" class="btn">YES</button>
+        <button class="btn">NO</button>
+    </div>
+            <!-- <button>Log out</button> -->
+        </nav>
+        <h1 id="userName">loading.......</h1>
+
+    </section>
+</body>
+</html>
+<script>
+    let inputColor = document.getElementById('inputColor');
+     let userEmail = document.getElementById('emailInput');
+    let userPassword = document.getElementById('password');
+    let getData = JSON.parse(localStorage.getItem('usersData')) || []; 
+    let currentUsersIndex = localStorage.getItem('currentUsersIndex');
+    let currentUser = getData[Number(currentUsersIndex)];
+    // profilePreview.src = currentUser.profile
+    
+    let userName =document.getElementById('userName')
+    let modal = document.getElementById('modall')
+    modal.style.display ='none'
+
+
+    // function showModal() {
+    //     modal.style.display = 'block'
+    // }
+     if (!currentUsersIndex || !currentUser) {
+    location.href = 'E-comerce-login.html';
+   } else {
+    userName.innerHTML = currentUser.username;
+    userName.style.color = 'brown';
+}
+function showModal() {
+     modal.style.display = 'block'
+    
+}
+function logout() {
+    if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('currentUsersIndex');
+        location.href = 'E-comerce-login.html';
+    }
+}
+
+
+
+</script>

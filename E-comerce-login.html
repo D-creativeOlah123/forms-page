@@ -23,6 +23,7 @@ body {
 	font-family: 'Ubuntu', sans-serif;
 	height: 100vh;
 	margin: -20px 0 50px;
+    /* padding: 20px; */
 }
         main{
            display: flex;
@@ -122,10 +123,14 @@ body {
         .hmm{
             width: 100%;
             display: flex;
-            background-color: hsla(36, 34%, 40%, 1);
-            font-size: 2px;
-            gap:20px;
-            color: violet;
+            /* background-color: hsla(36, 34%, 40%, 1); */
+            /* font-size: 2px; */
+            gap: 10px;
+            color: hsla(36, 34%, 40%, 1);
+            align-items: center;
+            hr{
+                width: 100%;
+            }
         }
        .eye{
             width: 50px;
@@ -269,7 +274,7 @@ body {
             width: 18px;
             height: 18px;
             border-radius: 50%;
-            background-color: hsla(36, 34%, 40%, 1);
+            background-color: #896d43;
             /* border: 2px solid hsla(34, 23%, 94%, 1); */
             border: 2px solid hsl(36, 77%, 86%);
         }
@@ -335,13 +340,13 @@ body {
         
     </div>
     </div>
-    <button onclick="login()" id="loginButton"><a style="color: white;" href="homepage.html">Log In</a></button>
-    <!-- <div class="hmm">
+    <button onclick="login()" id="loginButton">Log In</button>
+    <div class="hmm">
     <hr>
-    or
+    <p>or</p>
     <hr>
-    </div> -->
-    __________________________or____________________________
+    </div>
+    <!-- __________________________or____________________________ -->
     <p style="text-align: center;">Don't have an account <a style="color: hsla(36, 34%, 40%, 1);" href="index.html">signUP</a></p>
     
 
@@ -438,11 +443,17 @@ body {
         
     })
     if (found){
-        alert('Login Successful')
+        alert('Login Successful welcome')
+        let foundIndex = getData.findIndex((userObject, i, arr) =>{
+        return userObject.userEmail === userEmail
+        
+    })
+    localStorage.setItem('currentUsersIndex',foundIndex)
+    location.href = 'landingpage.html'
+        
     }else {
-        alert('User not found')
-    }
-    
+        alert('User not found try signing Up')
+    } 
    }
    
   function showPassword() {

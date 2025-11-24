@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         @import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+       * {
+	box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    gap: 20px;
+    align-items: center;
+    background-color: hsla(0, 1%, 37%, 0.46);
+    border-radius: 50px;
+    position: absolute;
+    /* left: 0; */
+    top: 20px;
+}
+section{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+ul{
+    display: flex;
+    gap: 20px;
+} 
+ul li{
+    list-style: none;
+}
+header{
+    width: 100%;
+    background: url(Frame\ 1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: 70vh;
+    color: white;
+    position: relative;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.blog{
+     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+     gap: 10px;
+}
+.row{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+p{
+    font-size: 17px;
+    font-weight: 500;
+}
+h1{
+    font-size: 45px;
+}
+.text{
+    display: flex;
+    flex-direction: column;
+    width:50%;
+    height: 350px;
+    background-color: blanchedalmond;
+    color: black;
+    padding: 20px;
+    gap: 20px;
+}
+button{
+            /* width: 100%; */
+            background-color: hsla(36, 34%, 40%, 1);
+            padding: 20px;
+            border-radius: 30px;
+            height: 50px;
+            border: none;
+            color: white;
+            /* width: 12?0px; */
+}
+input{
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    /* height: 300px; */
+}
+.result{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 48%;
+}
+.logo img {
+    width: 70px;
+    /* height: 50px; */
+}
+.flow{
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    position: relative;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.432);
+    width: 500px;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.svg{
+    position: absolute;
+    right: 2%;
+    display: flex;
+    gap: 7px;
+}
+a{
+    color: white;
+    text-decoration: none;
+}
+
+#image{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid rgb(0, 102, 255);
+}
+textarea{
+    width: 100%;
+    height: 200px;
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+}
+    </style>
+    
+</head>
+<body>
+    <section>
+       
+        <!-- <h1 id="userName">loading.......</h1> -->
+        <header>
+             <nav>
+            <div class="logo">
+                <img src="Frame 38 (1).png" alt="">
+            </div>
+            <ul>
+                <li><a href="landingpage.html">Home</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li>Blog</li>
+                <li>About us</li>
+            </ul>
+            <div class="log">
+        <button onclick="showModal()" id="logout">LogOut</button>
+    </div>
+    <div id="modall">
+        <h3>Are you sure you want to logout</h3>
+        <button onclick="logout()" class="btn">YES</button>
+        <button class="btn">NO</button>
+    </div>
+            <!-- <button>Log out</button> -->
+        </nav>
+            <h1 >Your Home Away From Home Awaits</h1>
+            <h1 > Luxury, Comfort, and Culture at Azure</h1>
+            <p style="width: 50%; text-align: center;">Experience world-class hospitality with a touch of local charm.with our luxury rooms and other available facilities which make every stay tells a story</p>
+            <button>Read our stories</button>
+        </header>
+        <div class="blog">
+            <h2>What will you make today</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam laudantium maxi </p>
+          
+<div class="row">
+                <div class="text">
+            <!-- <input id="content" type="text" placeholder="start writing blog"> -->
+            <textarea name="" id="content">Start writing blog</textarea>
+           <input onchange="addFile(event)" id="file" type="file">
+         <button onclick="add()">post blog</button>
+        </div>
+        
+         <div class="result"></div>
+</div>
+        </div>
+        
+    </section>
+    
+</body>
+</html>
+<script>
+  let inputColor = document.getElementById('inputColor');
+     let userEmail = document.getElementById('emailInput');
+    let userPassword = document.getElementById('password');
+    let getData = JSON.parse(localStorage.getItem('usersData')) || []; 
+    let currentUsersIndex = localStorage.getItem('currentUsersIndex');
+    let currentUser = getData[Number(currentUsersIndex)];
+    // profilePreview.src = currentUser.profile
+    
+    let userName =document.getElementById('userName')
+    let modal = document.getElementById('modall')
+    
+    modal.style.display ='none'
+    
+
+    // 
+    let content = document.getElementById('content')
+    let result = document.querySelector('.result')
+    let file = document.getElementById('file')
+    let array = JSON.parse(localStorage.getItem('array')) || []
+    let profile = '';
+
+    function add() {
+        if (!content.value.trim()) {
+            alert('Fill the textarea')
+            return
+        }
+        if (!profile) {
+            alert('Please choose a file')
+            return
+        }
+        let object = {
+            content : content.value.trim(),
+            image: profile
+        }
+        array.push(object)
+        localStorage.setItem('array', JSON.stringify(array))
+        result.innerHTML = ''
+        show()
+        content.value = ''
+        profile = ''
+
+    }
+    show()
+
+    function show() {
+        array.forEach((member, index) => {
+            result.innerHTML += `<div class="flow">
+                    <img id="image" src="${member.image}" alt="">
+            <div class="container">
+                <h3>Post ${index + 1}</h3>
+                <p>${member.content}</p>
+            </div>
+            <div class="svg">
+                <span><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fb8e28"><path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Z"/></svg></span>
+            </div>
+        </div>`
+        } )
+    }
+
+
+    function addFile(ev) {
+        let display = ev.target.files[0]
+        let reader = new FileReader()
+
+        if (!display) {
+            alert('Please attach a file')
+            return
+        }
+            reader.readAsDataURL(display)
+            reader.addEventListener('load', (params) => {
+                profile = params.target.result
+            })
+    }
+
+    // function showModal() {
+    //     modal.style.display = 'block'
+    // }
+     if (!currentUsersIndex || !currentUser) {
+    location.href = 'E-comerce-login.html';
+   } else {
+    userName.innerHTML = currentUser.username;
+    userName.style.color = 'brown';
+}
+function showModal() {
+     modal.style.display = 'block'
+    
+}
+function logout() {
+    if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('currentUsersIndex');
+        location.href = 'E-comerce-login.html';
+    }
+}
+
+
+
+
+</script>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fast learn</title>
+    <style>
+        .show{
+            width: 200px;
+            /* height: 200px; */
+            border-radius: 10%;
+            background-color: blueviolet;
+            display: flex;
+            padding: 20px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+   <button id="loader" onclick="runButton()"> click me</button> 
+   <h1 id="number">10</h1>
+   <input type="text" id="countInput">
+   <button onclick="countDown()">counter</button>
+   <p onclick="jump(event)">wertyuio</p>
+   <input class="show" multiple onchange="pickpicture(event)" type="file" id="fileInput" accept=".jpeg,.jpg,.png">
+   <img style="width: 200px; height: 200px;" src="user icon.jpg" alt="" id="myImage">
+   <div id="previewContainer"></div>
+</body>
+</html>
+<script>
+    function pickpicture(ev) {
+        let file = ev.target.files[0]
+        let reader = new FileReader()
+        if (!file) {
+        alert('Please attach at least one file');
+        return;
+    }
+
+        for (let file of ev.target.files) {
+            let reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.addEventListener('load', (e) => {
+            console.log(e.target.result);
+
+            let img = document.createElement('img');
+            img.src = e.target.result;
+
+            document.getElementById('previewContainer').appendChild(img);
+  
+        });
+    }
+}
+
+
+// loader.addEventListener('click',runButton)
+function runButton(params) {
+    loader.innerHTML = 'loading.....'
+    loader.disabled = true
+
+    setTimeout(() => {
+        alert('done!')
+        loader.innerHTML = 'click me'
+        loader.disabled = false
+    }, 3000);   
+}
+
+let timeoutInterval = setInterval(() => {
+console.log('hmmmmmm')
+
+}, 4000)
+
+setTimeout(() => {
+    clearInterval(timeoutInterval)
+    
+}, 8000);
+
+let number = document.getElementById('number')
+
+let decresaser = setInterval(() => {
+let val = +(number.innerHTML)
+     
+if (val === 0) {
+    alert('time up') 
+    clearInterval(decresaser)
+    number.innerHTML = val
+    return
+} 
+    val--
+    number.innerHTML = val
+    
+}, 1000);
+
+let countInput = document.getElementById('countInput')
+
+function countDown() {
+    let countDowndecreaser = setInterval(() => {
+        let valu = (countInput.value)
+
+         if (countInput.value === '0') {
+        alert('timeup')
+        clearInterval(countDowndecreaser)
+        countInput.value = valu
+        return
+    }
+    valu--
+    countInput.value = valu    
+    }, 1000);   
+}
+function jump(ev) {
+    console.log(ev);
+    ev.target.innerHTML = 'OLAIDE'
+    
+    
+}
+
+</script>

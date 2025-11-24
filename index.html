@@ -28,7 +28,7 @@ body {
             display: flex;
             flex-direction: column;
             gap:20px;
-            width: 40%;
+            width: 30%;
             height: 98vh;
             background-color: white;
             padding: 30px;
@@ -348,7 +348,7 @@ body {
         
     </div>
     </div>
-    <button onclick="signUp()" id="signupbutton" ><a style="color: white;" href="E-comerce-login.html">Sign up</a></button>
+    <button onclick="signUp()" id="signupbutton" >Sign up</button>
     <!-- <div class="hmm">
     <hr>
     or
@@ -509,6 +509,7 @@ body {
        console.log(usersDatabase);
        localStorage.setItem('usersData', JSON.stringify(usersDatabase))
        alert('You have signed up with azure')
+        location.href = 'E-comerce-login.html'
        
     }
     signupbutton.innerHTML = 'Sign up'
